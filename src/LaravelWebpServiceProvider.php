@@ -14,7 +14,7 @@ class LaravelWebpServiceProvider extends ServiceProvider
     public function boot()
     {
 		$this->publishes([
-			__DIR__ . '../config/laravel-webp.php' => config_path('laravel-webp.php'),
+			__DIR__ . '/../config/laravel-webp.php' => config_path('laravel-webp.php'),
 		]);
     }
 
