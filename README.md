@@ -55,7 +55,7 @@ WebP::make(<input path>)->save(<output path>, <quality :optional>);
 ```
 where `<quality>` is 0 - 100 integer. 0 - lowest quality, 100 - highest quality.
 
-Also you can set `quality` by chaining `->quality(<quality>)` after `WebP::make(<input path>)` and `->save(<output path>);`
+Also you can set `quality` by chaining `->quality(<quality>)` between `WebP::make(<input path>)` and `->save(<output path>);`
 
 ## License
 
