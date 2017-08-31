@@ -1,7 +1,7 @@
 {
     "name": "buglinjo/laravel-webp",
     "type": "library",
-    "description": ":package_description",
+    "description": "Laravel 5 package for WebP image format",
     "keywords": [
         "Buglinjo",
         "LaravelWebp",
