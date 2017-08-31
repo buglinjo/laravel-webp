@@ -50,7 +50,7 @@
                 "Buglinjo\\LaravelWebp\\LaravelWebpServiceProvider"
             ],
             "aliases": {
-                "WebP": "Buglinjo\\LaravelWebp\\LaravelWebpController"
+                "WebP": "Buglinjo\\LaravelWebp\\LaravelWebp"
             }
         }
     },
