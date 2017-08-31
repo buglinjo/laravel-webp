@@ -1,0 +1,60 @@
+{
+    "name": "Buglinjo/LaravelWebp",
+    "type": "library",
+    "description": ":package_description",
+    "keywords": [
+        "Buglinjo",
+        "LaravelWebp",
+        "Webp",
+        "Laravel"
+    ],
+    "homepage": "https://github.com/buglinjo/laravel-webp",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Irakli Tchitadze",
+            "email": "irakli.tchitadze@gmail.com",
+            "homepage": "buglinjo.me",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "illuminate/support": "~5.1",
+        "php" : "~5.6|~7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : ">=5.4.3",
+        "squizlabs/php_codesniffer": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Buglinjo\\LaravelWebp\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Buglinjo\\LaravelWebp\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
+        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Buglinjo\\LaravelWebp\\LaravelWebpServiceProvider"
+            ],
+            "aliases": {
+                "WebP": "Buglinjo\\LaravelWebp\\LaravelWebpController"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
