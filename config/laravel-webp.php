@@ -1,12 +1,12 @@
 <?php
 
 return [
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| Configuration
 	|--------------------------------------------------------------------------
 	*/
 
-	'cwebp_path'      => 'C:\libwebp\bin\cwebp.exe',
-	'default_quality' => 70,
+    'cwebp_path'      => '/usr/local/bin/cwebp',
+    'default_quality' => 70,
 ];

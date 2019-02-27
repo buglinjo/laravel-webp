@@ -31,12 +31,12 @@ $ composer require buglinjo/laravel-webp
 
 After updating composer, add the ServiceProvider to the providers array in config/app.php
 ```php
-Buglinjo\LaravelWebp\LaravelWebpServiceProvider::class,
+Buglinjo\LaravelWebp\WebpServiceProvider::class,
 ```
 
 You can use the facade for shorter code. Add this to your aliases:
 ```php
-'WebP' => Buglinjo\LaravelWebp\Facades\LaravelWebp::class,
+'WebP' => Buglinjo\LaravelWebp\Facades\Webp::class,
 ```
 
 #### Publish config file
@@ -44,7 +44,7 @@ You can use the facade for shorter code. Add this to your aliases:
 You will need to publish config file to add `cwebp` global path.
 
 ```
-php artisan vendor:publish --provider="Buglinjo\LaravelWebp\LaravelWebpServiceProvider" --tag=config
+php artisan vendor:publish --provider="Buglinjo\LaravelWebp\WebpServiceProvider" --tag=config
 ```
 
 In `config/laravel-webp.php` config file you should set `cwebp` global path.
@@ -57,7 +57,7 @@ In `config/laravel-webp.php` config file you should set `cwebp` global path.
     	|--------------------------------------------------------------------------
     	*/
     
-    	'cwebp_path'      => 'C:\libwebp\bin\cwebp.exe',
+    	'cwebp_path'      => '/usr/local/bin/cwebp',
     	'default_quality' => 70,
     ];
 ```

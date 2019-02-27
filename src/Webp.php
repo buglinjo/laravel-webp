@@ -4,23 +4,22 @@ namespace Buglinjo\LaravelWebp;
 
 use Illuminate\Support\Facades\File;
 
-class LaravelWebp
+class Webp
 {
-    private
-        /**
-         * @var string
-         */
-        $cwebpPath,
+    /**
+     * @var string
+     */
+    private $cwebpPath;
 
-        /**
-         * @var int
-         */
-        $quality,
+    /**
+     * @var string
+     */
+    private $inputPath;
 
-        /**
-         * @var string
-         */
-        $inputPath;
+    /**
+     * @var int
+     */
+    private $quality;
 
     /**
      * LaravelWebp constructor.
@@ -35,7 +34,7 @@ class LaravelWebp
      * @param $inputPath
      * @return $this
      */
-    public function makeWebp($inputPath)
+    public function makeWebp($inputPath): self
     {
         $this->inputPath = $inputPath;
 
@@ -46,7 +45,7 @@ class LaravelWebp
      * @param $quality
      * @return $this
      */
-    public function quality($quality)
+    public function quality($quality): self
     {
         $this->quality = $quality;
 
@@ -58,7 +57,7 @@ class LaravelWebp
      * @param null $quality
      * @return bool
      */
-    public function save($outputPath, $quality = null)
+    public function save($outputPath, $quality = null): bool
     {
         $thisQuality = $quality ? $quality : $this->quality;
 
@@ -73,9 +72,9 @@ class LaravelWebp
 
     /**
      * @param string $inputPath
-     * @return LaravelWebp
+     * @return self
      */
-    public static function make($inputPath)
+    public static function make($inputPath): self
     {
         return (new self())->makeWebp($inputPath);
     }
