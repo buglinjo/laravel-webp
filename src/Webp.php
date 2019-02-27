@@ -2,6 +2,7 @@
 
 namespace Buglinjo\LaravelWebp;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 
 class Webp
@@ -26,8 +27,8 @@ class Webp
      */
     public function __construct()
     {
-        $this->cwebpPath = config('laravel-webp.cwebp_path');
-        $this->quality = config('laravel-webp.default_quality');
+        $this->cwebpPath = Config::get('laravel-webp.cwebp_path');
+        $this->quality = Config::get('laravel-webp.default_quality');
     }
 
     /**
