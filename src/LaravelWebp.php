@@ -2,43 +2,81 @@
 
 namespace Buglinjo\LaravelWebp;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\File;
 
-class LaravelWebp extends Controller {
+class LaravelWebp
+{
+    private
+        /**
+         * @var string
+         */
+        $cwebpPath,
 
-	private $cwebpPath, $quality, $inputPath;
+        /**
+         * @var int
+         */
+        $quality,
 
-	public function __construct()
-	{
-		$this->cwebpPath = config('laravel-webp.cwebp_path');
-		$this->quality = config('laravel-webp.default_quality');
-	}
+        /**
+         * @var string
+         */
+        $inputPath;
 
-	public function make($inputPath)
-	{
-		$this->inputPath = $inputPath;
+    /**
+     * LaravelWebp constructor.
+     */
+    public function __construct()
+    {
+        $this->cwebpPath = config('laravel-webp.cwebp_path');
+        $this->quality = config('laravel-webp.default_quality');
+    }
 
-		return $this;
-	}
+    /**
+     * @param $inputPath
+     * @return $this
+     */
+    public function makeWebp($inputPath)
+    {
+        $this->inputPath = $inputPath;
 
-	public function quality($quality)
-	{
-		$this->quality = $quality;
+        return $this;
+    }
 
-		return $this;
-	}
+    /**
+     * @param $quality
+     * @return $this
+     */
+    public function quality($quality)
+    {
+        $this->quality = $quality;
 
-	public function save($outputPath, $quality = null)
-	{
-		$thisQuality = $quality ? $quality : $this->quality;
-		shell_exec($this->cwebpPath . ' -q ' . $thisQuality . ' ' . $this->inputPath . ' -o ' . $outputPath);
+        return $this;
+    }
 
-		if (\File::exists($outputPath)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+    /**
+     * @param      $outputPath
+     * @param null $quality
+     * @return bool
+     */
+    public function save($outputPath, $quality = null)
+    {
+        $thisQuality = $quality ? $quality : $this->quality;
 
+        shell_exec($this->cwebpPath . ' -q ' . $thisQuality . ' ' . $this->inputPath . ' -o ' . $outputPath);
+
+        if (File::exists($outputPath)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @param string $inputPath
+     * @return LaravelWebp
+     */
+    public static function make($inputPath)
+    {
+        return (new self())->makeWebp($inputPath);
+    }
 }

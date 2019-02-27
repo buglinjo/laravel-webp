@@ -27,6 +27,8 @@ Via Composer
 $ composer require buglinjo/laravel-webp
 ```
 
+#### For Laravel <= 5.4
+
 After updating composer, add the ServiceProvider to the providers array in config/app.php
 ```php
 Buglinjo\LaravelWebp\LaravelWebpServiceProvider::class,
@@ -36,6 +38,8 @@ You can use the facade for shorter code. Add this to your aliases:
 ```php
 'WebP' => Buglinjo\LaravelWebp\Facades\LaravelWebp::class,
 ```
+
+#### Publish config file
 
 You will need to publish config file to add `cwebp` global path.
 
