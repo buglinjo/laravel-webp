@@ -36,7 +36,7 @@ Buglinjo\LaravelWebp\WebpServiceProvider::class,
 
 You can use the facade for shorter code. Add this to your aliases:
 ```php
-'WebP' => Buglinjo\LaravelWebp\Facades\Webp::class,
+'Webp' => Buglinjo\LaravelWebp\Facades\Webp::class,
 ```
 
 #### Publish config file
@@ -97,13 +97,24 @@ In `config/laravel-webp.php` config file you should set `cwebp` global path.
 ## Usage
 
 ``` php
-WebP::make(<input path>)->save(<output path>, <quality :optional>);
+Webp::make(<UploadedFile image>)->save(<output path>, <quality :optional>);
 ```
+Note: `UploadedFile` class instance is created when file is retrieved using laravel request.
+
+Example: 
+``` php
+    $webp = Webp::make($request->file('image'));
+    
+    if ($webp->save(public_path('output.webp')) {
+        // File is saved successfully
+    }    
+```
+
 where `<quality>` is 0 - 100 integer. 0 - lowest quality, 100 - highest quality.
 
 Default `quality` is 70
 
-Also you can set `quality` by chaining `->quality(<quality>)` between `WebP::make(<input path>)` and `->save(<output path>);`
+Also you can set `quality` by chaining `->quality(<quality>)` between `WebP::make(<UploadedFile image>)` and `->save(<output path>);`
 
 ## License
 
