@@ -4,7 +4,7 @@ namespace Buglinjo\LaravelWebp;
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelWebpServiceProvider extends ServiceProvider
+class WebpServiceProvider extends ServiceProvider
 {
     /**
      * Perform post-registration booting of services.
@@ -13,9 +13,9 @@ class LaravelWebpServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-		$this->publishes([
-			__DIR__ . '/../config/laravel-webp.php' => config_path('laravel-webp.php'),
-		], 'config');
+        $this->publishes([
+            __DIR__ . '/../config/laravel-webp.php' => config_path('laravel-webp.php'),
+        ], 'config');
     }
 
     /**
@@ -25,8 +25,8 @@ class LaravelWebpServiceProvider extends ServiceProvider
      */
     public function register()
     {
-		$this->app->bind('webp', function() {
-			return new LaravelWebp();
-		});
+        $this->app->bind('webp', function () {
+            return new Webp();
+        });
     }
 }
