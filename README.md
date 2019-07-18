@@ -49,6 +49,8 @@ php artisan vendor:publish --provider="Buglinjo\LaravelWebp\WebpServiceProvider"
 
 In `config/laravel-webp.php` config file you should set `cwebp` global path.
 
+#### Note: PHH-GD Driver is under progress, please use cwebp before it's finished.
+
 ``` php
     return [
         /*
@@ -84,7 +86,7 @@ In `config/laravel-webp.php` config file you should set `cwebp` global path.
     
         'drivers' => [
     
-            'php-gd' => [],
+            'php-gd' => [], 
     
             'cwebp' => [
                 'path' => '/usr/local/bin/cwebp',
