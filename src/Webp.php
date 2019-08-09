@@ -18,7 +18,7 @@ class Webp
         $driver = Config::get('laravel-webp.default_driver');
 
         if ($driver === 'php-gd') {
-            //
+            return (new PhpGD())->make($image);
         } elseif ($driver === 'cwebp') {
             return (new Cwebp())->make($image);
         }
