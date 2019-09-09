@@ -27,47 +27,96 @@ Via Composer
 $ composer require buglinjo/laravel-webp
 ```
 
+#### For Laravel <= 5.4
+
 After updating composer, add the ServiceProvider to the providers array in config/app.php
 ```php
-Buglinjo\LaravelWebp\LaravelWebpServiceProvider::class,
+Buglinjo\LaravelWebp\WebpServiceProvider::class,
 ```
 
 You can use the facade for shorter code. Add this to your aliases:
 ```php
-'WebP' => Buglinjo\LaravelWebp\Facades\LaravelWebp::class,
+'Webp' => Buglinjo\LaravelWebp\Facades\Webp::class,
 ```
+
+#### Publish config file
 
 You will need to publish config file to add `cwebp` global path.
 
 ```
-php artisan vendor:publish --provider="Buglinjo\LaravelWebp\LaravelWebpServiceProvider" --tag=config
+php artisan vendor:publish --provider="Buglinjo\LaravelWebp\WebpServiceProvider" --tag=config
 ```
 
 In `config/laravel-webp.php` config file you should set `cwebp` global path.
 
+#### Note: PHP-GD Driver is under progress, please use cwebp before it's finished.
+
 ``` php
     return [
-    	/*
-    	|--------------------------------------------------------------------------
-    	| Configuration
-    	|--------------------------------------------------------------------------
-    	*/
+        /*
+        |--------------------------------------------------------------------------
+        | Default Quality
+        |--------------------------------------------------------------------------
+        |
+        | This is a default quality unless you provide while generation of the WebP
+        |
+        */
     
-    	'cwebp_path'      => 'C:\libwebp\bin\cwebp.exe',
-    	'default_quality' => 70,
+        'default_quality' => 70,
+    
+        /*
+        |--------------------------------------------------------------------------
+        | Default Driver
+        |--------------------------------------------------------------------------
+        |
+        | This is a default image processing driver. Available: ['php-gd', 'cwebp']
+        |
+        */
+    
+        'default_driver' => 'cwebp',
+    
+        /*
+        |--------------------------------------------------------------------------
+        | Drivers
+        |--------------------------------------------------------------------------
+        |
+        | Available drivers which can be selected
+        |
+        */
+    
+        'drivers' => [
+    
+            'php-gd' => [], 
+    
+            'cwebp' => [
+                'path' => '/usr/local/bin/cwebp',
+            ],
+    
+        ],
     ];
 ```
 
 ## Usage
 
 ``` php
-WebP::make(<input path>)->save(<output path>, <quality :optional>);
+Webp::make(<UploadedFile image>)->save(<output path>, <quality :optional>);
 ```
+Note: `UploadedFile` class instance is created when file is retrieved using laravel request.
+
+Example: 
+``` php
+    $webp = Webp::make($request->file('image'));
+    
+    if ($webp->save(public_path('output.webp')) {
+        // File is saved successfully
+    }    
+```
+
 where `<quality>` is 0 - 100 integer. 0 - lowest quality, 100 - highest quality.
 
 Default `quality` is 70
 
-Also you can set `quality` by chaining `->quality(<quality>)` between `WebP::make(<input path>)` and `->save(<output path>);`
+Also you can set `quality` by chaining `->quality(<quality>)` between `WebP::make(<UploadedFile image>)` and `->save(<output path>);`
 
 ## License
 
