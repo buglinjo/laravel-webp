@@ -1,4 +1,4 @@
-## WebP (.webp) comes to Laravel 5
+## WebP (.webp) comes to Laravel 5/6
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
