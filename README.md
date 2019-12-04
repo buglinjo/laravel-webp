@@ -106,7 +106,7 @@ Example:
 ```php
     $webp = Webp::make($request->file('image'));
 
-    if ($webp->save(public_path('output.webp')) {
+    if ($webp->save(public_path('output.webp'))) {
         // File is saved successfully
     }
 ```
