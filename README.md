@@ -1,4 +1,4 @@
-## WebP (.webp) comes to Laravel 5
+## WebP (.webp) comes to Laravel 5/6
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
@@ -12,7 +12,6 @@ WebP lossless images are 26% smaller in size compared to PNGs. WebP lossy images
 
 Lossless WebP supports transparency (also known as alpha channel) at a cost of just 22% additional bytes. For cases when lossy RGB compression is acceptable, lossy WebP also supports transparency, typically providing 3× smaller file sizes compared to PNG.
 
-
 `cwebp` compresses an image using the WebP format. Input format can be either `PNG`, `JPEG`, `TIFF`, `WebP` or raw `Y'CbCr` samples.
 
 ## Before Installation
@@ -23,18 +22,20 @@ Note: You will need to install WebP before installing this package. For more inf
 
 Via Composer
 
-``` bash
+```bash
 $ composer require buglinjo/laravel-webp
 ```
 
 #### For Laravel <= 5.4
 
 After updating composer, add the ServiceProvider to the providers array in config/app.php
+
 ```php
 Buglinjo\LaravelWebp\WebpServiceProvider::class,
 ```
 
 You can use the facade for shorter code. Add this to your aliases:
+
 ```php
 'Webp' => Buglinjo\LaravelWebp\Facades\Webp::class,
 ```
@@ -49,7 +50,7 @@ php artisan vendor:publish --provider="Buglinjo\LaravelWebp\WebpServiceProvider"
 
 In `config/laravel-webp.php` config file you should set `cwebp` global path.
 
-``` php
+```php
     return [
         /*
         |--------------------------------------------------------------------------
@@ -59,20 +60,20 @@ In `config/laravel-webp.php` config file you should set `cwebp` global path.
         | This is a default quality unless you provide while generation of the WebP
         |
         */
-    
+
         'default_quality' => 70,
-    
+
         /*
         |--------------------------------------------------------------------------
         | Default Driver
         |--------------------------------------------------------------------------
         |
-        | This is a default image processing driver. Available: ['php-gd', 'cwebp']
+        | This is a default image processing driver. Available: ['cwebp']
         |
         */
-    
+
         'default_driver' => 'cwebp',
-    
+
         /*
         |--------------------------------------------------------------------------
         | Drivers
@@ -81,33 +82,33 @@ In `config/laravel-webp.php` config file you should set `cwebp` global path.
         | Available drivers which can be selected
         |
         */
-    
+
         'drivers' => [
-    
-            'php-gd' => [],
-    
+
             'cwebp' => [
                 'path' => '/usr/local/bin/cwebp',
             ],
-    
+
         ],
     ];
 ```
 
 ## Usage
 
-``` php
+```php
 Webp::make(<UploadedFile image>)->save(<output path>, <quality :optional>);
 ```
+
 Note: `UploadedFile` class instance is created when file is retrieved using laravel request.
 
-Example: 
-``` php
+Example:
+
+```php
     $webp = Webp::make($request->file('image'));
-    
-    if ($webp->save(public_path('output.webp')) {
+
+    if ($webp->save(public_path('output.webp'))) {
         // File is saved successfully
-    }    
+    }
 ```
 
 where `<quality>` is 0 - 100 integer. 0 - lowest quality, 100 - highest quality.
@@ -123,7 +124,6 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-version]: https://img.shields.io/packagist/v/buglinjo/laravel-webp.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/buglinjo/laravel-webp.svg?style=flat-square
-
 [link-packagist]: https://packagist.org/packages/buglinjo/laravel-webp
 [link-downloads]: https://packagist.org/packages/buglinjo/laravel-webp
 [link-author]: https://github.com/buglinjo
