@@ -20,7 +20,7 @@
     ],
     "require": {
         "illuminate/support": "~5.1|~6.0|~7.0|~8.0",
-        "php": "~7.1||^8.0",
+        "php": "~7.1|^8.0",
         "ext-gd": "*"
     },
     "require-dev": {
