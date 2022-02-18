@@ -9,7 +9,6 @@ return [
     | This is a default quality unless you provide while generation of the WebP
     |
     */
-
     'default_quality' => 70,
 
     /*
@@ -17,11 +16,10 @@ return [
     | Default Driver
     |--------------------------------------------------------------------------
     |
-    | This is a default image processing driver. Available: ['cwebp']
+    | This is a default image processing driver. Available: ['cwebp', 'php-gd']
     |
     */
-
-    'default_driver' => 'cwebp',
+    'default_driver' => 'php-gd',
 
     /*
     |--------------------------------------------------------------------------
@@ -31,12 +29,30 @@ return [
     | Available drivers which can be selected
     |
     */
-
     'drivers' => [
 
+        /*
+        |--------------------------------------------------------------------------
+        | Cwebp Driver
+        |--------------------------------------------------------------------------
+        |
+        | If you choose cwebp driver it is required to specify the path to the executable.
+        |
+        */
         'cwebp' => [
             'path' => '/usr/local/bin/cwebp',
         ],
 
+        /*
+        |--------------------------------------------------------------------------
+        | Cwebp Driver
+        |--------------------------------------------------------------------------
+        |
+        | If you choose PHP GD driver no configuration is necessary.
+        |
+        */
+        'php-gd' => [
+            //
+        ],
     ],
 ];

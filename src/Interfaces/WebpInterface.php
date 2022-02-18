@@ -3,6 +3,7 @@
 
 namespace Buglinjo\LaravelWebp\Interfaces;
 
+use Exception;
 use Illuminate\Http\UploadedFile;
 
 interface WebpInterface
@@ -23,6 +24,7 @@ interface WebpInterface
      * @param string $outputPath
      * @param int|null $quality
      * @return bool
+     * @throws Exception
      */
     public function save(string $outputPath, int $quality = null): bool;
 }

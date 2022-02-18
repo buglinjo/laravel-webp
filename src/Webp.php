@@ -2,7 +2,7 @@
 
 namespace Buglinjo\LaravelWebp;
 
-use Exception;
+use Buglinjo\LaravelWebp\Exceptions\DriverIsNotSupportedException;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Http\UploadedFile;
 
@@ -10,19 +10,25 @@ class Webp
 {
     /**
      * @param UploadedFile $image
-     * @return Cwebp|Traits\WebpTrait
-     * @throws Exception
+     * @return Cwebp|PhpGD|Traits\WebpTrait|null
+     * @throws DriverIsNotSupportedException
      */
     public static function make(UploadedFile $image)
     {
         $driver = Config::get('laravel-webp.default_driver');
+        $availableDrivers = Config::get('laravel-webp.drivers');
 
-        if ($driver === 'php-gd') {
-            return (new PhpGD())->make($image);
-        } elseif ($driver === 'cwebp') {
-            return (new Cwebp())->make($image);
+        if (!in_array($driver, array_keys($availableDrivers))) {
+            throw new DriverIsNotSupportedException($driver);
         }
 
-        throw new Exception('Driver [' . $driver . '] is not supported.');
+        switch ($driver) {
+            case 'php-gd':
+                return (new PhpGD())->make($image);
+            case 'cwebp':
+                return (new Cwebp())->make($image);
+        }
+
+        return null;
     }
 }

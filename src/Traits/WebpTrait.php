@@ -19,7 +19,7 @@ trait WebpTrait
 
     /**
      * @param UploadedFile $image
-     * @return WebpTrait
+     * @return $this
      */
     public function make(UploadedFile $image): self
     {
@@ -31,7 +31,7 @@ trait WebpTrait
 
     /**
      * @param $quality
-     * @return WebpTrait
+     * @return $this
      */
     public function quality($quality): self
     {
