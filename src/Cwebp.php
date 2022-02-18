@@ -2,16 +2,11 @@
 
 namespace Buglinjo\LaravelWebp;
 
+use Buglinjo\LaravelWebp\Exceptions\CwebpShellExecutionFailed;
 use Buglinjo\LaravelWebp\Interfaces\WebpInterface;
 use Buglinjo\LaravelWebp\Traits\WebpTrait;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
-
-
-class CwebpShellExecutionFailed extends \Exception
-{
-}
 
 class Cwebp implements WebpInterface
 {
@@ -34,6 +29,7 @@ class Cwebp implements WebpInterface
      * @param string $outputPath
      * @param int|null $quality
      * @return bool
+     * @throws CwebpShellExecutionFailed
      */
     public function save(string $outputPath, int $quality = null): bool
     {
@@ -43,17 +39,7 @@ class Cwebp implements WebpInterface
         exec($cmd, $output, $exitCode);
 
         if ($exitCode !== 0) {
-            throw new CwebpShellExecutionFailed(
-                'Image conversion to WebP using cwebp failed with error code ' . $exitCode . ".\n"
-                . "This command was used to execute cwebp: \n"
-                . "  " . $cmd . "\n"
-                . (
-                    count($output) ?
-                    "The following output was sent to stdout: \n  " . join("\n  ", $output) :
-                    "No output was sent to stdout"
-                ),
-                $exitCode
-            );
+            throw new CwebpShellExecutionFailed($cmd, $output, $exitCode);
         }
 
         return File::exists($outputPath);
