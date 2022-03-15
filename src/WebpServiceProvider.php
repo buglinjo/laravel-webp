@@ -16,6 +16,10 @@ class WebpServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../config/laravel-webp.php' => config_path('laravel-webp.php'),
         ], 'laravel-assets');
+
+        $this->publishes([
+            __DIR__ . '/../config/laravel-webp.php' => config_path('laravel-webp.php'),
+        ], 'config');
     }
 
     /**
