@@ -45,7 +45,7 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | Cwebp Driver
+        | PHP GD Driver
         |--------------------------------------------------------------------------
         |
         | If you choose PHP GD driver no configuration is necessary.
