@@ -15,10 +15,10 @@ interface WebpInterface
     public function make(UploadedFile $image);
 
     /**
-     * @param $quality
+     * @param int|null $quality
      * @return mixed
      */
-    public function quality($quality);
+    public function quality(?int $quality);
 
     /**
      * @param string $outputPath

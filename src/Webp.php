@@ -3,8 +3,8 @@
 namespace Buglinjo\LaravelWebp;
 
 use Buglinjo\LaravelWebp\Exceptions\DriverIsNotSupportedException;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Config;
 
 class Webp
 {

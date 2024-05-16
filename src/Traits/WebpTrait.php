@@ -30,10 +30,10 @@ trait WebpTrait
     }
 
     /**
-     * @param $quality
+     * @param int|null $quality
      * @return $this
      */
-    public function quality($quality): self
+    public function quality(?int $quality): self
     {
         $this->quality = $quality;
 
