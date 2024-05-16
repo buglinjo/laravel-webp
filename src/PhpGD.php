@@ -17,7 +17,7 @@ class PhpGD implements WebpInterface
      * @return bool
      * @throws ImageMimeNotSupportedException
      */
-    public function save(string $outputPath, int $quality = null): bool
+    public function save(string $outputPath, ?int $quality = null): bool
     {
         $quality = $quality ?? $this->quality;
         $path = $this->image->path();
