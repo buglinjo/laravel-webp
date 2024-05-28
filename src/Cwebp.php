@@ -16,7 +16,7 @@ class Cwebp implements WebpInterface
     /**
      * @var string
      */
-    protected $cwebpPath;
+    protected string $cwebpPath;
 
     /**
      * Cwebp constructor.
