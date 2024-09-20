@@ -24,6 +24,10 @@ class PhpGD implements WebpInterface
         $info = getimagesize($path);
         $isAlpha = false;
 
+        if ($info === false) {
+            throw new ImageMimeNotSupportedException('Image mime type SVG is not supported.');
+        }
+
         switch ($info['mime']) {
             case 'image/jpeg':
                 $image = imagecreatefromjpeg($path);
