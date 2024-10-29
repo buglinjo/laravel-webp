@@ -38,7 +38,7 @@ class PhpGD implements WebpInterface
                 break;
             case 'image/png':
                 $isAlpha = true;
-                $image = imagecreatefrompng($path);
+                $image = @imagecreatefrompng($path);
                 break;
             default:
                 throw new ImageMimeNotSupportedException('Image mime type' . $info['mime'] . 'is not supported.');
